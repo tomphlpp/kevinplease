@@ -4,9 +4,94 @@
     <title>KEVIN PLEASE</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.5.0/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js"></script>
+    
+    
 </head>
 <body>
     <h1>kevin please!!!!!!</h1>
-    <IMG SRC="rrr.gif">
-    <label for="uploaderAndEmailer"></label>click here to upload .txt, .html, or .php file</label>
+    <img src="rrr.gif" alt="Kevin GIF">
+    <form id="upload-form">
+        <input type="file" id="file-input">
+        <button type="button" id="upload-button">Upload</button>
+    </form>
+
+    <div id="message-container">
+        <p id="success-message" style="display: none; color: green;">File uploaded successfully.</p>
+        <p id="error-message" style="display: none; color: red;">Error uploading file.</p>
+    </div>
+
+    
+    <script type="module">
+
+        // Import the functions you need from the SDKs you need
+      
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.0/firebase-app.js";
+      
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.3.0/firebase-analytics.js";
+      
+        // TODO: Add SDKs for Firebase products that you want to use
+      
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+      
+        // Your web app's Firebase configuration
+      
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      
+        const firebaseConfig = {
+      
+          apiKey: "AIzaSyCwOgHBgKmMj8ARyWpYsuiysEivrHGK1NI",
+      
+          authDomain: "kevin-pleaes.firebaseapp.com",
+      
+          projectId: "kevin-pleaes",
+      
+          storageBucket: "kevin-pleaes.appspot.com",
+      
+          messagingSenderId: "679128787865",
+      
+          appId: "1:679128787865:web:4a09f7c0d964c208870108",
+      
+          measurementId: "G-DJ5YGWWE4T"
+      
+        };
+      
+      
+        // Initialize Firebase
+      
+        const app = initializeApp(firebaseConfig);
+        const storage = firebase.storage();
+        const storageRef = storage.ref();
+        const analytics = getAnalytics(app);
+      
+      
+
+    
+    
+    
+        const uploadForm = document.getElementById("upload-form");
+        const fileInput = document.getElementById("file-input");
+        const uploadButton = document.getElementById("upload-button");
+
+        uploadButton.addEventListener("click", () => {
+            const file = fileInput.files[0];
+            if (file) {
+                //const storageRef = firebase.storage().ref();
+                const fileRef = storageRef.child(file.name);
+                fileRef.put(file).then(() => {
+                    successMessage.style.display = "block";
+                    errorMessage.style.display = "none";
+                    console.log("File uploaded successfully.");
+                }).catch(error => {
+                    errorMessage.style.display = "block";
+                    successMessage.style.display = "none";
+                    console.error("Error uploading file:", error);
+                });
+            }
+        });
+    </script>
 </body>
+</html>
