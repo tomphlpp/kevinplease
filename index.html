@@ -26,7 +26,7 @@
     <script type="module">
         // Import the functions you need from the SDKs
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
-        import { getStorage, ref, put } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-storage.js";
+        import { getStorage, ref, uploadBytes } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-storage.js";
 
         // Your Firebase configuration
         const firebaseConfig = {
@@ -64,7 +64,7 @@ measurementId: "G-DJ5YGWWE4T"
             const file = fileInput.files[0];
             if (file) {
                 const fileRef = ref(storageRef, file.name);
-                put(fileRef, file)
+                uploadBytes(fileRef, file)
                     .then(snapshot => {
                         successMessage.style.display = "block";
                         errorMessage.style.display = "none";
