@@ -19,7 +19,7 @@
     </form>
 
     <div id="message-container">
-        <p id="success-message" style="display: none; color: green;">File uploaded successfully.</p>
+        <p id="success-message" style="display: none; color: green; font-size: large;">${file.name} uploaded successfully.</p>
         <p id="error-message" style="display: none; color: red;">Error uploading file.</p>
     </div>
 
@@ -66,6 +66,7 @@ measurementId: "G-DJ5YGWWE4T"
                 const fileRef = ref(storageRef, file.name);
                 uploadBytes(fileRef, file)
                     .then(snapshot => {
+                        //const successMessage = 'S{$file.name} was uploaded successfully';
                         successMessage.style.display = "block";
                         errorMessage.style.display = "none";
                         console.log("File uploaded successfully.");
