@@ -64,7 +64,7 @@ measurementId: "G-DJ5YGWWE4T"
             const file = fileInput.files[0];
             if (file) {
                 const fileRef = ref(storageRef, file.name);
-                uploadString(fileRef, file)
+                put(fileRef, file)
                     .then(snapshot => {
                         successMessage.style.display = "block";
                         errorMessage.style.display = "none";
